@@ -1,0 +1,198 @@
+.first {
+  min-height:100%;
+  height:60vh;
+  background-position: center;
+  background-size:cover;
+  background-image:url('orquestra.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat:no-repeat;
+}
+
+
+/* Make the image fully responsive */
+
+ /* Estilizando as Setas */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: red;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: red;
+}
+
+.carousel-caption{
+  color:rgb(70, 187, 14);
+  font-weight: bold;
+  background-clip: content-box;
+  background-size:cover;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+.row img{
+  max-height: 30vh;
+  max-width:100%;
+}
+
+.row p{
+  margin-top:2%;
+  margin-right:4%;
+  margin-left:4%;
+  border-left: 5px solid rgb(70, 187, 14);
+}
+
+.img-thumbnail{
+  width:300px;
+  height:auto;
+}
+
+.navbar{
+  align-items:center;
+}
+
+
+html {
+  font-size: 1rem;
+}
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
+
+
+.footer{
+  padding-top:2%;
+  background-color:rgba(4, 186, 49, 1.0);
+}
+
+.footer p{
+  border:0px;
+  margin-top:0%;
+  margin-right:0%;
+  margin-left:2%;
+  color:white;
+}
+#pesquisa {
+  margin-left:10px;
+}
+
+
+/*setando Responsividade em telas */
+
+/*Telas  Super Pequenas (Telefones, 600px e menor)*/
+@media only screen and (max-width: 600px) {
+  #pesquisa {
+    display: none;
+  }
+  .carousel-inner img {
+    align: center;
+    display: block;
+    margin: auto auto;
+    max-width: 100%;
+    width:auto;
+    height:33vh;
+    }
+
+  .first {
+    height:40vh;
+    min-height:40vh;
+    min-width:40vw;
+    background-position: center;
+    background-size:cover;
+    background-image:url('orquestra.jpg');
+    }
+
+  .row p{
+    border-left: 0px;
+    border-bottom: 2px solid rgb(70, 187, 14);
+    }
+
+}
+/* Pequenos dispositivos (tablets e celulares largos, 600px pra cima) */
+@media only screen and (min-width: 600px) {
+  #pesquisa {
+    display: none;
+  }
+  .carousel-inner img {
+        height: 40vh;
+        width: auto;
+        align: center;
+        display: block;
+        max-width: 100%;
+    }
+
+
+}
+
+/* Medios dispositivos (tablets em paisagem, 768px pra cima) */
+@media only screen and (min-width: 768px) {
+  #pesquisa {
+    display: none;
+  }
+  .carousel-inner img {
+        height: 40vh;
+        width: auto;
+        align: center;
+        display: block;
+        max-width: 100%;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px pra cima) */
+@media only screen and (min-width: 992px) {
+  #pesquisa{
+    display: block;
+  }
+  .carousel-inner img {
+        height: 480px;
+        width: auto;
+        align: center;
+        display: block;
+        max-width: 100%;
+    }
+
+}
+
+/* Extra large devices (laptopes largos e telas grandes, 1200px pra cima) */
+@media only screen and (min-width: 1200px) {
+  .carousel-inner img {
+        height: 480px;
+        width: auto;
+        align: center;
+        display: block;
+        max-width: 100%;
+    }
+
+}
+

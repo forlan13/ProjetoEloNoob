@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>    
+    <script src="../controllers/options.js"></script>
+
+</head>
+<body ng-controller="options" ng-init="session()">
+    <form >
+        Nome: <input type="text" ng-model="name" value="{{ name }}"><br>
+        Senha Atual: <input type="password" ng-model="password"><br>
+        Nova Senha: <input type="password" ng-model="Newpassword"><br>
+        Repita Nova Senha: <input type="password" ng-model="RNewpassword"><br>
+        <button type="submit" ng-click="submit()">modificar</button>
+    </form>
+    <a href="../../index.html"><button>Voltar</button></a>
+</body>
+</html>

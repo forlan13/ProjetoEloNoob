@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+
+    <title>GerartIFAL - Login</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+<!-- CSS -->
+    <!--Essa alteração na chamada dos css é temporaria-->
+    <link rel="stylesheet" type="text/css" href="../../css/csszin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/cssnavcolor.css">
+    <link rel="stylesheet" type="text/css" href="../../css/login_cadastro.css">
+    <link rel="stylesheet" href="../../css/Footer-with-map.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+  </head>
+
+  <body ng-controller="check" ng-init="check()">
+      <div class="login-page" id="Tela">
+          <div class="form" ng-controller="register">
+            <form id="form-cadastro" class="register-form needs-validation">
+              <input id="nome" class="form-control" type="text" placeholder="Nome" ng-model="name" required>
+              <p id="nome-invalido"></p>
+              <input id="password" class="form-control" type="password" placeholder="Senha" ng-model="password" required>
+              <p id="senha-invalida"></p>
+              <input id="email" class="form-control" type="text" placeholder="E-mail" ng-model="email" required>
+              <button type="submit" id="cadastrar" ng-click="submit()">create</button>
+              <p class="message">Already registered? <a href="#Tela">Sign In</a></p>
+            </form>
+          </div>
+
+          <div class="form" ng-controller="login">
+            <form class="needs-validation">
+                <input class="form-control" type="text" placeholder="username" ng-model="name" required>
+                <input class="form-control" type="password" placeholder="password" ng-model="password" required>
+                <button type="submit" ng-click="submit()">login</button>
+                <p class="message">Not registered? <a href="#Tela">Create an account</a></p>
+                <p class="message">Forgot your password? <a href="forgotPass.html">Click here</a></p>
+            </form>
+          </div>
+      </div>
+      <div id="result"></div>
+
+    <script type="text/javascript">
+		    $('.message a').click(function(){
+				      $('form').animate({
+                height: "toggle",
+                opacity: "toggle"}, "slow");
+		    });
+
+    </script>
+
+    <script src="../controllers/controller.js"></script>
+
+  </body>
+</html>

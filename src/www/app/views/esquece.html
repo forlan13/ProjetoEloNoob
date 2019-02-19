@@ -1,0 +1,139 @@
+<html lang="pt-br">
+
+  <head>
+
+<!--Titulo Do Site (Fica Na Parte De Cima Do Navegador)-->
+  <title>GerartIFAL</title>
+<!--Definindo o tipo de codificação que apresenta todos os caracteres-->
+  <meta charset="utf-8">
+<!--Como o Site é feito em bootstrap inicialmente fazemos logo para mobile, essa linha faz com que a tela tenha uma escala de telefone e se adapte caso for um pc e não ao contrário-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--Links Do Bootstrap (Temporário)-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!--Link Do Css csszin.css que ta estilizando o site-->
+  <link rel="stylesheet" type="text/css" href="css/csszin.css">
+<!--Link Do Css cssnavcolor.css que muda a cor do navbar-->
+  <link rel="stylesheet" type="text/css" href="css/cssnavcolor.css">
+
+  </head>
+
+  <body>
+<!-- Logo Parte De Cima-->
+    <section class="first">
+      <div class="container-fluid"></div>
+    </section>
+<!-- Navbar Que Gruda Em Cima Da Tela e se expande quando deixa de ser pra celular-->
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark sticky-top">
+<!-- Home Gerart -->
+      <a class="navbar-brand" href="TEstando.html">Home Gerart</a>
+<!--3 Barrinhas quando o navbar está pequeno-->
+      <button class="navbar-toggler" typer="button" data-toggle="collapse" data-target"#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+<!--Links/Botões Do Navbar que ao ficar pequeno vão para dentro das 3 barrinhas-->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+<!--Links/Botões Do Navbar,"ul" é a lista não ordenada,"ml-auto" é para organizar ao lado direito nosso e esquerdo da tela-->
+        <ul class="navbar-nav ml-auto">
+<!--Item Ativo do navbar, "li" é itens da lista-->
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+<!--Item Normal do navbar-->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Camerata</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=#>Outra Aba</a>
+          </li>
+<!--Item Desabilitado do navbar(Próvavelmente não utilizaremos)-->
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Admin</a>
+          <li>
+        </ul>
+      </div>
+<!--Barrinha De Pesquisa-->
+      <form class="navbar-form" action="/action_page.php" id="pesquisa">
+        <div class="input-group" id="barra">
+          <div class="input-group-prepend">
+            <span class="input-group-text">§</span>
+          </div>
+          <input class="form-control mr-sm-2" type="text" placeholder="Pesquisar">
+        </div>
+      </form>
+    </nav>
+<!--Carrossel-->
+    <div class="container">
+      <div id"demo" class="carousel slide" data-ride="carousel">
+<!-- Indicadores Inferiores-->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+<!-- Slide Do Carrossel, carrossel centralizado-->
+        <div class="carousel-inner" align="center">
+          <div class="carousel-item active">
+<!-- Imagem Do Carrossel-->
+            <img src="img/Toquio_ultrajando2.jpg" alt="Los Angeles" width="1100" height="500">
+<!--Texto Do Carrossel-->
+            <div class="carousel-caption d-none d-md-block text-dark">
+              <h5>Gordo Vencedor</h5>
+              <p>Gordo Ganhou o Concuros de Melhor Gordo Do Ano</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+<!-- Imagem Do Carrossel-->
+            <img src="img/ViloãoCompleto.jpg" alt="Los Angeles" width="1100" height="500">
+<!--Texto Do Carrossel-->
+            <div class="carousel-caption d-none d-md-block text-dark">
+              <h5>Judeoul Vencedor</h5>
+              <p>Judeoul Ganhou o Concurso De Melhor Judeoul Do Ano</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+<!-- Imagem Do Carrossel-->
+            <img src="img/Toquio_ultrajando2.jpg" alt="Los Angeles" width="1100" height="500">
+<!--Texto Do Carrossel-->
+            <div class="carousel-caption d-none d-md-block text-dark">
+              <h5>Negro Vencedor</h5>
+              <p>Negro Ganhou o Concuros de Melhor Gordo Do Ano</p>
+            </div>
+          </div>
+<!-- Controle Direito e Esquerdo Do Carrossel-->
+          <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+    </div>
+<!--Resto dos Textos-->
+      <div class="container-fluid" align="center"><br>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt massa mi, quis tristique eros tincidunt ac. Maecenas nec turpis ornare, elementum neque a, vulputate urna. Donec nec pellentesque erat. Pellentesque leo enim, fringilla scelerisque tortor et, efficitur tincidunt eros. Fusce interdum odio et interdum semper. Maecenas ut odio vitae mauris dignissim iaculis. Praesent finibus quis eros accumsan ultricies. Nunc ac augue imperdiet, fringilla metus ut, iaculis leo. Praesent luctus blandit dolor. Vivamus eu vehicula risus. In gravida lorem odio, id euismod ex tincidunt eu. Mauris vel dapibus risus. Morbi pulvinar nisl congue, fermentum ligula eget, eleifend sem.</p>
+        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras lobortis nibh venenatis diam sollicitudin, sed cursus odio vulputate. In velit augue, malesuada vel nibh at, volutpat volutpat purus. In porta venenatis orci, quis laoreet quam malesuada ac. Nullam hendrerit porttitor lorem, eu dapibus elit blandit eget. Phasellus eu sem fermentum, varius risus eget, pulvinar erat. Duis fermentum gravida est. Curabitur tortor justo, vehicula ac lectus at, tincidunt imperdiet sapien. Donec auctor, lectus ac placerat lacinia, metus neque fringilla turpis, ut sollicitudin ipsum dolor malesuada magna. Sed et orci non nisl accumsan dignissim. Cras lobortis ex nibh, sit amet blandit eros hendrerit sit amet. Nullam tincidunt, mi non vehicula rhoncus, mauris ipsum vehicula diam, eu sodales nunc eros eu augue. Quisque tellus nunc, placerat nec accumsan sit amet, luctus nec ipsum. Phasellus lobortis consectetur dictum. Donec dui purus, sodales a odio a, blandit tincidunt sapien. Nunc ac enim nulla.</p>
+        <p>Aliquam quis nibh et turpis aliquet sodales. Etiam ac fringilla erat, at dapibus sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In gravida elit nec e
+
+
+
+          nim varius, sed auctor nisi volutpat. Sed sed ante sit amet urna mattis consequat. Fusce justo elit, pulvinar ut massa eget, dapibus faucibus nisl. Fusce tristique lectus ut elit rutrum venenatis.</p>
+        <p>In rutrum turpis ac ligula consectetur semper. Sed congue id mauris eu pulvinar. Nulla sed interdum lorem, vel facilisis lorem. Phasellus nec lacus id purus molestie vehicula. Nullam dictum aliquam eros. Phasellus aliquam diam eu metus faucibus, suscipit aliquet nunc tempus. In hac habitasse platea dictumst. Fusce finibus diam eu maximus ornare. Maecenas ac lacinia lectus, nec semper neque. Fusce vitae tortor quis sapien consectetur facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam dignissim nunc quis neque sodales faucibus. Etiam interdum lectus sit amet lacus facilisis luctus. Nulla at arcu eros. Nullam iaculis, mi ac viverra aliquet, nulla nunc lobortis enim, a porta ante enim a dui. Aenean dapibus sem quis feugiat tempus.</p>
+      </div>
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+      <script src="../../dist/js/bootstrap.min.js"></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    </body>
+  </html>
+
+
+  </body>
+</html>
