@@ -1,25 +1,8 @@
-<div id="{{ x.cpf }}">
-  <h1 id="name">{{ x.name }}</h1>
-  <p>{{ x.age }}</p>
-  <p>{{ x.cpf }}</p>
+<div id="{{ x }}">
+  <form id="chat">
+      Author: <input type="text" name="username" placeholder="Author"><br>
+    <div class="messages"></div>
+    Menssage: <input type="text" name="message">
+    <button type="submit" ng-click="chatShup()">submit</button>
+  </form>
 </div>
-
-<button onclick="btGerarPDF(this.id)" id="{{ x.cpf }}">gerar PDF</button>
-
-<script>
-  function btGerarPDF(cpf) {
-
-    var user = document.getElementById(`${cpf}`).innerHTML;
-    var win = window.open('', '', 'height=700,width=700');
-    win.document.write('<html><head>');
-    win.document.write('<title>Usuarios</title>');
-    win.document.write('</head>');
-    win.document.write('<body>');
-    win.document.write(user);
-    win.document.write('</body></html>');
-    win.document.close();
-    win.print();
-
-  }
-
-</script>

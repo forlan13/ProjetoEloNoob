@@ -14,8 +14,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script src="app/controllers/auth.js"></script>
 
+
 <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/csszin.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">    
     <link rel="stylesheet" type="text/css" href="css/cssnavcolor.css">
     <link rel="stylesheet" href="css/Footer-with-map.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -31,7 +33,16 @@
     <a href="/app/views/accOptions.html"><button>option</button></a>
     <a href="/app/views/blog.html"><button>Noticias</button></a>
     <a href="/app/views/payment.html"><button>payment</button></a>
+    <a href="/app/views/suportChat.html"><button>suportChat</button></a>
 
+
+    <div>
+      <form id="chat" ng-controller="Chat">
+          <div id="messages"></div>
+          Menssage: <input type="text" ng-model="message">
+          <button type="submit" ng-click="chat()">submit</button>
+      </form>
+    </div>
 
   </body>
 </html>

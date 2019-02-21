@@ -1,20 +1,29 @@
 const app = angular.module('app', []);
 
 // Para validar uma sessão
+const socket = io.connect('http://localhost:3000/');
+let chatId;
 app.controller('auth', ($scope, $http, $window) => {
+  
   $scope.session = () => {
     const openSub = $window.localStorage.getItem('openSub');
 
     if (!openSub) {
       $window.localStorage.setItem('openSub', false);
     }
+    
+    
+    socket.on('conn', (data) => {
+      socket.emit('success', data);
+      chatId = data;
+    });
 
-    const socket = io.connect('http://localhost:3000/');
-    socket.on('openF', (data) => {
-      const date = Date.now();
-      if (date >= Date.parse(data.from) && date <= Date.parse(data.until)) {
-        $window.localStorage.setItem('openSub', true);
-      }
+    socket.on('greeting', (data) => {
+      $('#messages').append(`<div><strong>Suporte</strong>: ${data}</div>`);
+    });
+
+    socket.on('mess', (data) => {
+      $('#messages').append(`<div><strong>Suporte</strong>: ${data}</div>`);
     });
 
     const token = (document.cookie).split('=', 2)[1];
@@ -62,4 +71,17 @@ app.controller('session', ($scope, $window) => {
     }
     return 'btn disabled btn-success dropdown-toggle';
   };
+});
+
+
+app.controller('Chat', ($scope) => {
+
+    $scope.chat = () => {
+      socket.emit('mssToS', { id: chatId, mss: $scope.message });
+      $('#messages').append(`<div><strong>Eu</strong>: ${$scope.message}</div>`);
+      $scope.message = null;
+    }
+    socket.on('mss', (mss) =>{
+      $('#messages').append(`<div><strong>Suporte</strong>: ${mss}</div>`);
+    });
 });

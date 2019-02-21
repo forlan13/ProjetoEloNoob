@@ -23,6 +23,43 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/www')));
 // -----------------------------------------------//
 
+// -------------------Chat de Suport ---------------//
+
+const clients = [];
+
+io.on('connection', (socket) => {
+  
+
+  socket.emit('conn', socket.id);
+  socket.on('success', (data) => {
+    clients.push(data);
+    socket.broadcast.emit('suport', { connected: clients });
+  });
+
+  socket.emit('greeting', 'Welcome to EloUp');
+
+  socket.on('mss', (data) => {
+    socket.to(data.to).emit('mess', data.mss);
+  });
+
+  socket.on('mssToS', (data) => {
+    socket.broadcast.emit('mssToS',data);
+  });
+
+  socket.on('disconnect', () => {
+    clients.splice(clients.indexOf(socket.id, 1));
+
+    socket.broadcast.emit('mssToS', { id: socket.id, mss: "Client Disconnected", disconnect: true });
+    if (!clients.length) {
+      return 0;
+    } else {
+      socket.broadcast.emit('suport', clients);
+    }
+  });
+  
+});
+
+// -----------------------------------------------//
 
 require('./app/controllers/index.js')(app);
 
@@ -49,7 +86,7 @@ async function demo() {
 }
 
 demo();
-// ----------------------------------------------------------------------------------
+// ------------------------------7----------------------------------------------------
 
 // function para encontrar porta disponível
 function normalizePort(val) {
