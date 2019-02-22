@@ -9,7 +9,7 @@ const port = normalizePort(process.env.PORT || '3000');
 const server = app.listen(port);
 const io = require('socket.io').listen(server);
 
-const User = require('./app/models/user.js');
+const Message = require('./app/models/messagesSuport.js');
 
 
 // --------------------Rederização da pagina-------//
@@ -27,29 +27,62 @@ app.use(express.static(path.join(__dirname, '/www')));
 
 const clients = [];
 
-io.on('connection', (socket) => {
+io.on('connection', async(socket) => {
   
-
+  
+  // -----------------Passando a Connecção para o Suporte-----------
   socket.emit('conn', socket.id);
-  socket.on('success', (data) => {
+  socket.on('success', async (data) => {
     clients.push(data);
     socket.broadcast.emit('suport', { connected: clients });
+    
+    await Message.create({ idClient: data }); // Criação do Chat no banco, para evitar perdas de menssagens
+
   });
+  // ----------------------------------------------------------------
+  socket.emit('greeting', 'Welcome to EloUp'); // Menssagem de Bem Vindo
 
-  socket.emit('greeting', 'Welcome to EloUp');
-
-  socket.on('mss', (data) => {
+  // Menssagem do Suporte para o cliente
+  socket.on('mss', async (data) => {
     socket.to(data.to).emit('mess', data.mss);
+    
+    // Inserção das menssagens do suporte
+    await Message.findOneAndUpdate({ idClient: data.to }, {
+      $push: {
+        messages: { name: 'Suport', message: data.mss },
+      },
+    });
+
   });
 
-  socket.on('mssToS', (data) => {
+  // Menssagem do Cliente para o suporte
+  socket.on('mssToS', async (data) => {
     socket.broadcast.emit('mssToS',data);
+
+    // Inserção das menssagens do Cliente
+    await Message.findOneAndUpdate({ idClient: data.id }, {
+      $push: {
+        messages: { name: 'Client', message: data.mss },
+      },
+    });
+
   });
 
-  socket.on('disconnect', () => {
+  await Message.find({}, (err, docs) => {
+    if (!err) {
+      socket.emit('restore', docs);
+    } else {
+      socket.emit('restore', 'nothing to see here');
+    } 
+  });
+
+  // Passando a Desconnecção para o Suporte
+  socket.on('disconnect', async () => {
     clients.splice(clients.indexOf(socket.id, 1));
 
     socket.broadcast.emit('mssToS', { id: socket.id, mss: "Client Disconnected", disconnect: true });
+
+    await Message.findOneAndRemove({ idClient: socket.id });
     if (!clients.length) {
       return 0;
     } else {

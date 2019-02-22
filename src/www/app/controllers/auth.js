@@ -1,18 +1,15 @@
 const app = angular.module('app', []);
 
-// Para validar uma sessão
+
 const socket = io.connect('http://localhost:3000/');
 let chatId;
+
+// ---------------Para validar uma sessão--------------------
 app.controller('auth', ($scope, $http, $window) => {
   
   $scope.session = () => {
-    const openSub = $window.localStorage.getItem('openSub');
 
-    if (!openSub) {
-      $window.localStorage.setItem('openSub', false);
-    }
-    
-    
+    // --------------------------Chat de Suporte----------------------------
     socket.on('conn', (data) => {
       socket.emit('success', data);
       chatId = data;
@@ -23,9 +20,15 @@ app.controller('auth', ($scope, $http, $window) => {
     });
 
     socket.on('mess', (data) => {
+      const audio = document.getElementById('audio');
+      audio.play();
+
+      $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+
       $('#messages').append(`<div><strong>Suporte</strong>: ${data}</div>`);
     });
-
+    // ----------------------------------------------------------------------
+    // --------------------------Verificação do Token--------------------------
     const token = (document.cookie).split('=', 2)[1];
     if (!token) { // caso não exista token, desvalida a sessão
       console.log('no session');
@@ -46,14 +49,17 @@ app.controller('auth', ($scope, $http, $window) => {
       document.cookie = 'token=; path=/';
       $window.localStorage.clear();
     });
+    // -------------------------------------------------------------------------
   };
-
+// --------------------------------------------------------------------------
+  // -------------------------Logout---------------------------------------
   $scope.logout = () => {
     $window.localStorage.clear();
     document.cookie = 'token=;path=/';
     $window.location.href = '/';
   };
 });
+// --------------------------------------------------------------------------
 // ativa / desativa itens na tela, dependendo da sessão
 app.controller('session', ($scope, $window) => {
   $scope.validClass = () => {
@@ -73,15 +79,18 @@ app.controller('session', ($scope, $window) => {
   };
 });
 
-
-app.controller('Chat', ($scope) => {
-
+// ----------------------------Envio de menssagens------------------------------------
+app.controller('Chat', ($scope, $window) => {
+    
     $scope.chat = () => {
-      socket.emit('mssToS', { id: chatId, mss: $scope.message });
-      $('#messages').append(`<div><strong>Eu</strong>: ${$scope.message}</div>`);
-      $scope.message = null;
+      const user = JSON.parse($window.localStorage.getItem('user'));
+      if ($scope.message){ 
+        socket.emit('mssToS', { user: user === null ? 'Client' : user.name , id: chatId, mss: $scope.message });  
+        $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+        $('#messages').append(`<div><strong>Eu</strong>: ${$scope.message}</div>`);
+        $scope.message = null;
+      } 
     }
-    socket.on('mss', (mss) =>{
-      $('#messages').append(`<div><strong>Suporte</strong>: ${mss}</div>`);
-    });
 });
+
+// --------------------------------------------------------------------------------
